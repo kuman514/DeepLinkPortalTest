@@ -8,7 +8,7 @@
   <body>
     <h1>포탈</h1>
     <a
-      href="#"
+      href="hanmogm://hanmogm.com/"
       onclick="
         onClickIOSApp();
         return false;
@@ -22,19 +22,17 @@
     </a>
     <script>
       function onClickIOSApp() {
-        const customUrl = 'hanmogm://hanmogm.com/';
         const storeUrl =
           'https://apps.apple.com/us/app/%ED%95%9C%EB%AA%A8%EA%B8%88-hanmogm/id6502346193';
 
         let didHide = false;
         function onVisibilityChange() {
-          if (document.hidden) didHide = true;
+          if (document.hidden) {
+            didHide = true;
+          }
         }
 
         document.addEventListener('visibilitychange', onVisibilityChange);
-
-        window.location.href = customUrl;
-
         setTimeout(() => {
           document.removeEventListener('visibilitychange', onVisibilityChange);
           if (!didHide) {
