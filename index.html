@@ -7,18 +7,41 @@
   </head>
   <body>
     <h1>포탈</h1>
-    <a href="hanmogm://">한모금 실행하기</a>
+    <a
+      href="#"
+      onclick="
+        onClickIOSApp();
+        return false;
+      "
+      >한모금 실행하기 iOS</a
+    >
+    <a
+      href="intent://scan/#Intent;scheme=hanmogm;package=com.hanmogm.hanmogm;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.hanmogm.hanmogm;end"
+    >
+      한모금 실행하기 Android
+    </a>
     <script>
-      function isAndroid() {
-        const userAgent = navigator.userAgent.toLowerCase();
-        return userAgent.includes('android');
+      function onClickIOSApp() {
+        const customUrl = 'hanmogm://hanmogm.com/';
+        const storeUrl =
+          'https://apps.apple.com/us/app/%ED%95%9C%EB%AA%A8%EA%B8%88-hanmogm/id6502346193';
+
+        let didHide = false;
+        function onVisibilityChange() {
+          if (document.hidden) didHide = true;
+        }
+
+        document.addEventListener('visibilitychange', onVisibilityChange);
+
+        window.location.href = customUrl;
+
+        setTimeout(() => {
+          document.removeEventListener('visibilitychange', onVisibilityChange);
+          if (!didHide) {
+            window.location.href = storeUrl;
+          }
+        }, 1500);
       }
-      navigator.registerProtocolHandler(
-        'web+hanmogm',
-        isAndroid()
-          ? 'https://play.google.com/store/apps/details?id=com.hanmogm.hanmogm&from=%s'
-          : 'https://apps.apple.com/us/app/%ED%95%9C%EB%AA%A8%EA%B8%88-hanmogm/id6502346193?from=%s',
-      );
     </script>
   </body>
 </html>
