@@ -8,5 +8,17 @@
   <body>
     <h1>포탈</h1>
     <a href="hanmogm://">한모금 실행하기</a>
+    <script>
+      function isAndroid() {
+        const userAgent = navigator.userAgent.toLowerCase();
+        return userAgent.includes('android');
+      }
+      navigator.registerProtocolHandler(
+        'web+hanmogm',
+        isAndroid()
+          ? 'https://play.google.com/store/apps/details?id=com.hanmogm.hanmogm&from=%s'
+          : 'https://apps.apple.com/us/app/%ED%95%9C%EB%AA%A8%EA%B8%88-hanmogm/id6502346193?from=%s',
+      );
+    </script>
   </body>
 </html>
